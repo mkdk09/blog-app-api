@@ -11,25 +11,26 @@ class V1::BlogsController < ApplicationController
     else
       render json: blog.errors
     end
+  end
 
-    def craete
-      blog = Blog.new(blog_params)
-      if blog.save
-        render json: blog, status: :created
-      else
-        render json: blog.errors, status: :unprocessable_entity
-      end
+  def craete
+    blog = Blog.new(blog_params)
+    if blog.save
+      render json: blog, status: :created
+    else
+      render json: blog.errors, status: :unprocessable_entity
     end
+  end
 
-    def destroy
-      blog = Blog.find(params[:id])
-      if blog.destroy
-        render json: blog
-      end
+  def destroy
+    blog = Blog.find(params[:id])
+    if blog.destroy
+      render json: blog
     end
+  end
 
-    private
-    def blog_params
-      params.require(:blog).permit(:title, :body)
-    end
+  private
+  def blog_params
+    params.require(:blog).permit(:title, :body)
+  end
 end
