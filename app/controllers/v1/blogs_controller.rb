@@ -13,7 +13,7 @@ class V1::BlogsController < ApplicationController
     end
   end
 
-  def craete
+  def create
     blog = Blog.new(blog_params)
     if blog.save
       render json: blog, status: :created
